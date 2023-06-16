@@ -14,11 +14,8 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/', function () {
-    $token =env('TELEGRAM_TOKEN');
-    Http::post("https://api.tlgr.org/bot{$token}/sendMessage", [
-        'chat_id' => 442385640,
-        'text' => 'initialize',
-        'parse_mode' => 'html'
-    ]);
+Route::get('/', function (\App\Helpers\Telegram $telegram) {
+    $id = env('TELEGRAM_REPORT_ID');
+    // $telegram->sendMessage($id, 'image test');
+    $telegram->sendDocument($id,'file.png');
 });
