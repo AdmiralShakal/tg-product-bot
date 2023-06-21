@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\OrderController;
+use App\Helpers\Telegram;
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +17,12 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/', function (\App\Helpers\Telegram $telegram) {
-    $id = env('TELEGRAM_REPORT_ID');
-    // $telegram->sendMessage($id, 'image test');
-    $telegram->sendDocument($id,'file.png');
+Route::get('/', function (\App\Models\Order $order, Telegram $telegram) {
+    return view('site.order', ['orders' => $order->active()->get()]);
+});
+
+Route::group(['namespace' => 'App\Http\Controllers'], function (){
+    Route::post('/order/store', 'OrderController@store')->name('order.store');
+    Route::post('/webhook', 'WebhookController@index');
+    Route::post('/post/store', 'PostController@store')->name('post.store');
 });
