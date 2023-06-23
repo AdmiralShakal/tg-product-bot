@@ -14,11 +14,11 @@
         @csrf
         <div class="form-group">
             <label for="fio">Имя фамилия</label>
-            <input type="text" class="form-control" name="name" id="fio" aria-describedby="emailHelp" placeholder="Дмитрий Повышев">
+            <input type="text" class="form-control" name="name" id="fio" aria-describedby="emailHelp" placeholder="Йинвар">
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
-            <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="dima@yandex.ru">
+            <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="test@yandex.ru">
         </div>
         <div class="form-group">
             <label >Товар</label>

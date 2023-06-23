@@ -18,7 +18,7 @@ class OrderController extends Controller
         $order->product = $request->input('product');
         $order->secret_key = $key;
         $order->save();
-        
+
         event(new OrderStore($order));
         return response()->redirectTo('/');
     }

@@ -47,6 +47,7 @@ class TelegramSubscriber
                     ]
                 ]
         ];
+
         $this->telegram->sendButtons(env('TELEGRAM_REPORT_ID'), (string)view('site.messages.new_order', $data), $reply_markup);
     }
 
