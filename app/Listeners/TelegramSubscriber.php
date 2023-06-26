@@ -23,13 +23,14 @@ class TelegramSubscriber
      * @return array
      */
 
-    public function orderStore($event)
+    public function orderStore($event) : void
     {
         $data = [
             'id' => $event->order->id,
-            'name' => $event->order->name,
-            'email' => $event->order->email,
-            'product' => $event->order->product,
+            'product_name' => $event->order->product_name,
+            'product_count' => $event->order->product_count,
+            'product_price' => $event->order->product_price,
+            'phone' => $event->order->phone
         ];
 
         $reply_markup = [
@@ -48,7 +49,7 @@ class TelegramSubscriber
                 ]
         ];
 
-        $this->telegram->sendButtons(env('TELEGRAM_REPORT_ID'), (string)view('site.messages.new_order', $data), $reply_markup);
+        $this->telegram->sendButtons(env('TELEGRAM_REPORT_ID'), view('site.messages.new_order', $data)->render(), $reply_markup);
     }
 
 

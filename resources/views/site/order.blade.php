@@ -12,22 +12,20 @@
     <h1 class="h1">Создание заказа</h1>
     <form action="{{route('order.store')}}" method="post">
         @csrf
+        <select class="form-control" name="product_name">
+            @foreach ($products as $product )
+                <option value="{{$product->name}}">{{$product->name}}</option>
+            @endforeach
+        </select>
+
         <div class="form-group">
-            <label for="fio">Имя фамилия</label>
-            <input type="text" class="form-control" name="name" id="fio" aria-describedby="emailHelp" placeholder="Йинвар">
+            <label for="numberCount">Колличество</label>
+            <input type="number" class="form-control" name="product_count" id="numberCount" placeholder="1">
         </div>
+
         <div class="form-group">
-            <label for="exampleInputEmail1">Email</label>
-            <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="test@yandex.ru">
-        </div>
-        <div class="form-group">
-            <label >Товар</label>
-            <select class="form-control" name="product">
-                <option value="Нож">Нож</option>
-                <option value="Чернила">Чернила</option>
-                <option value="Клавиатура">Клавиатура</option>
-                <option value="Микрофон">Микрофон</option>
-            </select>
+            <label for="phone">Мобила</label>
+            <input type="tel" class="form-control" name="phone" id="phone" placeholder="89999999">
         </div>
         <button type="submit" class="btn btn-primary">Заказать</button>
     </form>
@@ -56,16 +54,7 @@
 
     </div>
 
-    <div>
-        <form action="{{route('post.store')}}" method="post">
-            @csrf
-            <div class="form-group">
-                <label for="fio">Текст поста</label>
-                <input type="text" class="form-control" name="text" id="fio" aria-describedby="emailHelp" placeholder="Test">
-            </div>
-            <button type="submit" class="btn btn-primary">Отправить</button>
-        </form>
-    </div>
+
 </div>
 
 </body>

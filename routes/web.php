@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\OrderController;
 use App\Helpers\Telegram;
 use App\Models\Order;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,11 @@ use App\Models\Order;
 |
 */
 
-Route::get('/', function (\App\Models\Order $order, Telegram $telegram) {
-    return view('site.order', ['orders' => $order->active()->get()]);
+Route::get('/', function (Order $order, Product $product) {
+    return view('site.order', [
+        'orders' => $order->active()->get(),
+        'products' => $product->get()
+    ]);
 });
 
 Route::group(['namespace' => 'App\Http\Controllers'], function (){

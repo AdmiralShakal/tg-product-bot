@@ -8,10 +8,11 @@ class Order extends Model
 {
     protected $table = 'orders';
 
-    protected $fillable = ['name','email','product','public','secret_key',];
+    protected $fillable = ['product_id','product_name','product_count','product_price','status','phone','created_at','modified_at'];
 
+    public $timestamps = false;
     public function scopeActive($query)
     {
-        return $query->where('public', 1);
+        return $query->where('status', 1);
     }
 }
